@@ -39,8 +39,9 @@ module Kitchen
         state[:username] = @config[:username]
         state[:hostname] = 'localhost'
 
-        if config[:use_internal_docker_network]
+        if remote_socket?
           state[:hostname] = socket_uri.host
+        elsif config[:use_internal_docker_network]
           state[:hostname] = container_ip_address(state)
         end
       end
