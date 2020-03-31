@@ -40,6 +40,7 @@ module Kitchen
         state[:hostname] = 'localhost'
 
         if config[:use_internal_docker_network]
+          state[:hostname] = socket_uri.host
           state[:hostname] = container_ip_address(state)
         end
       end
